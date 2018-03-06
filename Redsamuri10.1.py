@@ -58,7 +58,7 @@ k5.loginResult()
 
 ki6 = LINETCR.LINE()
 
-AsulLogged = False
+RedLogged = False
 
 print u"login REDBOT success"
 reload(sys)
@@ -93,9 +93,9 @@ helpMessage ="""||=====  F O R   U S E R  =====||
 ||✒️✒ Info grup
 ||✒️✒ Clear grup
 ||✒️✒️ Reject    - ลบรัน
-||✒️✒️ Aslogin   - ขอลิ้งล็อคอินasul
-||✒️✒️ .         - เช็คสถานะล็อคอิน asul
-||✒️✒️ Reject1   - ลบรัน asul
+||✒️✒️ Aslogin   - ขอลิ้งล็อคอิน
+||✒️✒️ .         - เช็คสถานะล็อคอิน
+||✒️✒️ Reject1   - ลบรัน
 ||===== F O R  K I C K E R =====||
 ||✒️✒ Nuke
 ||✒️✒ Ratakan
@@ -143,7 +143,7 @@ helpMessage ="""||=====  F O R   U S E R  =====||
 ||======= FOR ADMIN =======||"""
 
 Thaihelp ="""
-    ===✒️ ชุดคำสั่งAsul Bot ✒️ ===
+    ===✒️ ชุดคำสั่งRed Bot ✒️ ===
 ||✒️ คท  - ส่งคท.ตัวเอง(Me)
 ||✒️ ไอดี  - ส่งMidตัวเอง
 ||✒️ เชคชื่อ  - เชครายชื่อคิกเกอร์
@@ -329,7 +329,7 @@ def mention(to,nama):
         print error
     
 def bot(op):
-    global AsulLogged
+    global RedLogged
     global ki6
     global user2
     global readAlert
@@ -375,7 +375,7 @@ def bot(op):
             msg = op.message
             if msg.toType == 0:
                 msg.to = msg.from_
-                if msg.from_ == abmin:
+                if msg.from_ == admin:
                     if "join:" in msg.text:
                         list_ = msg.text.split(":")
                         try:
@@ -3806,7 +3806,7 @@ thread2.start()
 
 def autolike():
      for zx in range(0,50):
-        hasil = cl.activity(limit=1000)
+        hasil = cl.activity(limit=200)
         if hasil['result']['posts'][zx]['postInfo']['liked'] == False:
           try:    
             ki.like(hasil['result']['posts'][zx]['userInfo']['mid'],hasil['result']['posts'][zx]['postInfo']['postId'],likeType=1002)
