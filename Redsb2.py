@@ -5,19 +5,188 @@ import LINETCR
 from LINETCR.lib.curve.ttypes import *
 from datetime import datetime
 from bs4 import BeautifulSoup
+from urllib import urlopen
+from Helper.main import qr
+import requests
+from io import StringIO
 from threading import Thread
 from googletrans import Translator
 from gtts import gTTS
 import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,os,subprocess,requests,tempfile
 
+#red = LINETCR.LINE()
+#red.login(token="EqZsQ7ae9nYjzdmsixy6.Lkg8ohUsFOz1yZrKJtfpHG.19Aae/UgHO/jhukcy/mryh4JDciaFIRrGZA04MPrjS0=")
+#red.loginResult()
+
 red = LINETCR.LINE()
-red.login(token="EquhPsn8LplTsfWtrRG6.Lkg8ohUsFOz1yZrKJtfpHG.FNvuuNnHIlvsnRvx05UYNJ1O7hPI5KOh6rA7oVPQB2k=")
+red.login(token=qr().get())
 red.loginResult()
+
 print "\n=====[redbot Login]====="
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+RedMessage ="""
+▄▄▄RED SAMURI SELFBØT▄▄▄
+█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+█░▀▀࿇˶̏˶̏˶̏˶̏˶̏˶̏˶̏˶̏˶̏[𖤓]˵̋˵̋˵̋˵̋˵̋˵̋˵̋࿇▀▀▀█
+█░࿇˶̏˶̏RᙩEᎯD_SᎯAᮜMᣯU𖤓R𖡹I˵̋˵̋࿇░█
+█░▀࿇˶̏˶̏˶̏[༺𖤓S𖡹B𖤓༻]˵̋˵̋˵̋࿇░▀▀▀▀█
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+█▀▀ RED SAMURI SELFBOT▀▀ █
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+█░║✶║〘sᴇʟғ〙
+█░║✶║〘ʜɪ〙
+█░║✶║〘ᴍᴇ〙
+█░║✶║〘ʏᴏᴜ〙
+█░║✶║〘ᴍymid〙
+█░║✶║〘ᴍɪᴅ @〙
+█░║✶║〘sᴇᴀʀᴄʜɪᴅ (ɪᴅ ʟɪɴᴇ)〙
+█░║✶║〘ᴄʜᴇᴄᴋᴅᴀᴛᴇ:ᴅᴅ/ᴍᴍ/ʏʏ〙
+█░║✶║〘ᴋᴀʟᴇɴᴅᴇʀ〙
+█░║✶║〘sᴛᴇᴀʟ ᴄᴏɴᴛᴀᴄᴛ〙
+█░║✶║〘ᴘᴘ @〙
+█░║✶║〘ᴄᴏᴠᴇʀ @〙
+█░║✶║〘ᴀᴜᴛᴏ ʟɪᴋᴇ〙
+█░║✶║〘sᴄʙᴄ ᴛᴇxᴛ〙
+█░║✶║〘ᴄʙᴄ ᴛᴇxᴛ〙
+█░║✶║〘ɢʙᴄ ᴛᴇxᴛ〙
+█░║✶║〘ʙɪᴏ @〙
+█░║✶║〘ɪɴғᴏ @〙
+█░║✶║〘ɴᴀᴍᴇ @〙
+█░║✶║〘ᴘʀᴏғɪʟᴇ @〙
+█░║✶║〘ᴄᴏntact @〙
+█░║✶║〘Getmid @〙
+█░║✶║〘ғʀɪᴇɴᴅʟɪsᴛ〙
+█░║✶║〘ᴍicadd @〙
+█░║✶║〘ᴍicdel @〙
+█░║✶║〘ᴍiclist〙
+█░║✶║〘ᴀʙsᴇɴ〙
+█░║✶║〘sᴘ,sᴘᴇᴇᴅ〙
+█░║✶║〘ʀᴇsᴘᴏɴ〙
+█░║✶║〘ʀᴜɴᴛɪᴍᴇ〙
+█░║✶║〘ᴄᴏᴘʏ @〙
+█░║✶║〘ᴄᴏᴘʏᴄᴏɴᴛᴀᴄᴛ〙
+█░║✶║〘ᴍʏʙᴀᴄᴋᴜᴘ〙
+█░║✶║〘ᴍʏʙɪᴏ (ᴛᴇxᴛ)〙
+█░║✶║〘ᴍʏɴᴀᴍᴇ (ᴛᴇxᴛ)〙
+█░║✶║〘@ʙʏᴇ〙
+█░║✶║〘ʙᴏᴛ ᴏɴ/ᴏғғ〙
+█░║✶║〘ɢɪғᴛ〙
+█░║✶║〘ɢɪғᴛʙʏᴄᴏɴᴛᴀᴄᴛ〙
+█░║✶║〘ɢɪғ ɢᴏʀᴇ〙
+█░║✶║〘ɢᴏᴏɢʟᴇ (ᴛᴇxᴛ)〙
+█░║✶║〘ᴘʟᴀʏsᴛᴏʀᴇ ɴᴀᴍᴀᴀᴘᴘ〙
+█░║✶║〘ғᴀɴᴄʏᴛᴇxᴛ ᴛᴇxᴛ〙
+█░║✶║〘ᴍᴜsɪᴋ ᴊᴜᴅᴜʟ-ᴘᴇɴʏᴀɴʏɪ〙
+█░║✶║〘ʟɪʀɪᴋ ᴊᴜᴅᴜʟ-ᴘᴇɴʏᴀɴʏɪ〙
+█░║✶║〘ᴍᴜsʀɪᴋ ᴊᴜᴅᴜʟ-ᴘᴇɴʏᴀɴʏɪ〙
+█░║✶║〘ɪɢ ᴜʀsɴᴀᴍᴇɪɴsᴛᴀɢʀᴀᴍ〙
+█░║✶║〘ᴄʜᴇᴄᴋɪɢ ɴᴀᴍᴇɪɴsᴛᴀɢʀᴀᴍ〙
+█░║✶║〘ᴀᴘᴀᴋᴀʜ ᴛᴇxᴛ:ᴋᴇʀᴀɴɢ ᴀᴊᴀɪʙ〙
+█░║✶║〘ᴋᴀᴘᴀɴ ᴛᴇxᴛ:ᴋᴇʀᴀɴɢ ᴀᴊᴀɪʙ〙
+█░║✶║〘ʜᴀʀɪ ᴛᴇxᴛ:ᴋᴇʀᴀɴɢ ᴀᴊᴀɪʙ〙
+█░║✶║〘ʙᴇʀᴀᴘᴀ ᴛᴇxᴛ:ᴋᴇʀᴀɴɢ ᴀᴊᴀɪʙ〙
+█░║✶║〘ʙᴇʀᴀᴘᴀᴋᴀʜ ᴛᴇxᴛ〙
+█░║✶║〘ʏᴏᴜᴛᴜʙᴇ ᴊᴜᴅᴜʟ ᴠɪᴅᴇᴏ〙
+█░║✶║〘ʏᴏᴜᴛᴜʙᴇᴠɪᴅᴇᴏ :ᴠɪᴅᴇᴏ〙
+█░║✶║〘ʏᴏᴜᴛᴜʙᴇsᴇᴀʀᴄʜ:ᴠɪᴅᴇᴏ〙
+█░║✶║〘ɪᴍᴀɢᴇ ɴᴀᴍᴀɢᴀᴍʙᴀʀ〙
+█░║✶║〘sᴀʏ ᴛᴇxᴛ〙
+█░║✶║〘sᴀʏ-ᴇɴ ᴛᴇxᴛ〙
+█░║✶║〘sᴀʏ-ᴊᴘ ᴛᴇxᴛ〙
+█░║✶║〘ᴛʀ-ɪᴅ ᴛᴇxᴛ( ᴇɴ ᴋᴇ ɪᴅ〙
+█░║✶║〘ᴛʀ-ᴇɴ ᴛᴇxᴛ( ɪᴅ ᴋᴇ ᴇɴ〙
+█░║✶║〘ᴛʀ-ᴛʜ ᴛᴇxᴛ( ɪᴅ ᴋᴇ ᴛʜ〙
+█░║✶║〘ɪᴅ@ᴇɴ ᴛᴇxᴛ( ɪᴅ ᴋᴇ ᴇɴ〙
+█░║✶║〘ɪᴅ@ᴛʜ ᴛᴇxᴛ( ɪᴅ ᴋᴇ ᴛʜ〙
+█░║✶║〘ᴇɴ@ɪᴅ ᴛᴇxᴛ( ᴇɴ ᴋᴇ ɪᴅ〙
+█░║✶║〘ᴡᴇʟᴄᴏᴍᴇ〙
+█░║✶║〘sᴀʏ ᴡᴇʟᴄᴏᴍᴇ〙
+█░║✶║〘ɪɴᴠɪᴛᴇ ᴄʀᴇᴀᴛᴏʀ〙
+█░║✶║〘sᴇᴛᴠɪᴇᴡ/ᴄᴄᴛᴠ〙
+█░║✶║〘ᴠɪᴇᴡsᴇᴇɴ/ᴄɪᴅᴜᴋ〙
+█░║✶║〘ɢɴ: (ɴᴀᴍᴀɢʀᴏᴜᴘ)〙
+█░║✶║〘ᴛᴀɢ ᴀʟʟ〙
+█░║✶║〘ʟᴜʀᴋ ᴏɴ/ᴏғғ〙
+█░║✶║〘ʟᴜʀᴋᴇʀs〙
+█░║✶║〘ʀᴇᴄᴏᴠᴇʀ〙
+█░║✶║〘ᴄᴀɴᴄᴇʟ〙
+█░║✶║〘ᴄᴀɴᴄᴇʟᴀʟʟ〙
+█░║✶║〘ɢᴄʀᴇᴀᴛᴏʀ〙
+█░║✶║〘ɢɪɴғᴏ〙
+█░║✶║〘ɢᴜʀʟ〙
+█░║✶║〘ʟɪsᴛ ɢʀᴏᴜᴘ〙
+█░║✶║〘ᴘɪᴄᴛ ɢʀᴏᴜᴘ:ɴᴀᴍᴀɢʀᴏᴜᴘ〙
+█░║✶║〘sᴘᴀᴍ: (ᴛᴇxᴛ)〙
+█░║✶║〘ᴀᴅᴅ ᴀʟʟ〙
+█░║✶║〘ᴋɪᴄᴋ: (ᴍɪᴅ)〙
+█░║✶║〘ɪɴᴠɪᴛᴇ: (ᴍɪᴅ)〙
+█░║✶║〘ɪɴᴠɪᴛᴇ〙
+█░║✶║〘ᴍᴇᴍʟɪsᴛ〙
+█░║✶║〘ɢᴇᴛɢʀᴏᴜᴘ ɪᴍᴀɢᴇ〙
+█░║✶║〘ᴜʀʟɢʀᴏᴜᴘ ɪᴍᴀɢᴇ〙
+█░║✶║〘sᴀᴍʙᴜᴛᴀɴ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴍɪᴍɪᴄ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴜʀʟ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴀʟᴡᴀʏsʀᴇᴀᴅ ᴏɴ/ᴏғғ〙
+█░║✶║〘sɪᴅᴇʀ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴄᴏɴᴛᴀᴄᴛ ᴏɴ/ᴏғғ〙
+█░║✶║〘sᴛɪᴄᴋᴇʀ ᴏɴ〙
+█░║✶║〘sɪᴍɪsɪᴍɪ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴄᴏᴅᴇ #13〙
+█░║✶║〘ᴋɪᴄᴋᴀʟʟ〙
+█░║✶║〘ʙᴄ: (ᴛᴇxᴛ)〙
+█░║✶║〘ᴊᴏɪɴ ɢʀᴏᴜᴘ:ɴᴀᴍᴀɢʀᴏᴜᴘ〙
+█░║✶║〘ʟᴇᴀᴠᴇ ɢʀᴏᴜᴘ:ɴᴀᴍᴀɢʀᴏᴜᴘ〙
+█░║✶║〘ʟᴇᴀᴠᴇ ᴀʟʟ ɢʀᴏᴜᴘ〙
+█░║✶║〘ᴛᴀɢ ᴏɴ/ᴏғғ〙
+█░║✶║〘ʙᴏᴛ ʀᴇsᴛᴀʀᴛ〙
+█░║✶║〘ᴛᴜʀɴ ᴏғғ〙
+█░║✶║〘ʙᴀɴ〙
+█░║✶║〘ᴜɴʙᴀɴ〙
+█░║✶║〘ʙᴀɴ @〙
+█░║✶║〘ᴜɴʙᴀɴ @〙
+█░║✶║〘ʙᴀɴ ʟɪsᴛ〙
+█░║✶║〘ᴄʟᴇᴀʀ ʙᴀɴ〙
+█░║✶║〘ᴋɪʟʟ〙
+█░║✶║〘ᴋɪᴄᴋ @〙
+█░║✶║〘sᴇᴛ ᴍᴇᴍʙᴇʀ: (ᴊᴜᴍʙʟᴀʜ)〙
+█░║✶║〘ʙᴀɴ ɢʀᴏᴜᴘ: (ɴᴀᴍᴀɢʀᴏᴜᴘ〙
+█░║✶║〘ᴅᴇʟ ʙᴀɴ: (ɴᴀᴍᴀɢʀᴏᴜᴘ〙
+█░║✶║〘ʟɪsᴛ ʙᴀɴ〙
+█░║✶║〘ᴋɪʟʟ ʙᴀɴ〙
+█░║✶║〘ɢʟɪsᴛ〙
+█░║✶║〘sᴘ @:sᴘᴀᴍ ᴄᴏɴᴛᴀᴄᴛ〙
+█░║✶║〘ᴛᴏ @ᴛᴀʀɢᴇᴛ〙
+█░║✶║〘ᴋᴇʟɪɴᴄɪ @ᴛᴀʀɢᴇᴛ〙
+█░║✶║〘ɢʟɪsᴛᴍɪᴅ〙
+█░║✶║〘ᴅᴇᴛᴀɪʟs ɢʀᴏᴜᴘ: (ɢɪᴅ)〙
+█░║✶║〘ᴄᴀɴᴄᴇʟ ɪɴᴠɪᴛᴇ: (ɢɪᴅ)〙
+█░║✶║〘ɪɴᴠɪᴛᴇᴍᴇᴛᴏ: (ɢɪᴅ)〙
+█░║✶║〘ᴀᴄᴄ ɪɴᴠɪᴛᴇ〙
+█░║✶║〘ʀᴇᴍᴏᴠᴇᴄʜᴀᴛ〙
+█░║✶║〘ϙʀ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴀᴜᴛᴏᴋɪᴄᴋ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴀᴜᴛᴏᴄᴀɴᴄᴇʟ ᴏɴ/ᴏғғ〙
+█░║✶║〘ɪɴᴠɪᴛᴇᴘʀᴏ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴊᴏɪɴ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴊᴏɪɴᴄᴀɴᴄᴇʟ ᴏɴ/ᴏғғ〙
+█░║✶║〘ʀᴇsᴘᴏɴ1 ᴏɴ/ᴏғғ〙
+█░║✶║〘ʀᴇsᴘᴏɴ2 ᴏɴ/ᴏғғ〙
+█░║✶║〘ʀᴇsᴘᴏɴ3 ᴏɴ/ᴏғғ〙
+█░║✶║〘ʀᴇsᴘᴏɴᴋɪᴄᴋ ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴛᴀɢᴠɪʀᴜs ᴏɴ/ᴏғғ〙
+█░║✶║〘ᴀʟʟᴘʀᴏᴛᴇᴄᴛ ᴏɴ/ᴏғғ〙
+█▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀█
+█▀▀░࿇˶̏˶̏˶̏˶̏˶̏˶̏˶̏˶̏[𖤓]˵̋˵̋˵̋˵̋˵̋˵̋˵̋˵̋࿇░▀▀█
+█░࿇RED ࿇ SAMURI࿇SELFBØT░█
+█░▀▀࿇˶̏˶̏˶̏[༺𖤓S𖡹B𖤓༻]˵̋˵̋˵̋࿇▀▀▀░█
+█▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄█
+█▀▀▀▀▀█▀▀▀▀▀█▀▀▀▀▀█▀▀▀▀█▀▀▀▀█
+█▄█▀▀▀▀▀█▀▀▀▀▀█▀▀▀▀▀█▀▀▀█▄█
+"""
 
 selfMessage ="""
 ╔═════════════════════════
@@ -48,8 +217,9 @@ selfMessage ="""
 ╠➩〘Micdel @〙
 ╠➩〘Miclist〙
 ╠═════════════════════════
-║                 🚩By : Ŕèď 🚩
-║    ✴ line.me/ti/p/~samuri5✴
+║   🌾RED BOT LINE THAILAND🌾
+║    ─┅═✥👊ᵀᴴᴬᴵᴸᴬᴺᴰ👊✥═┅─
+║       💀[RED SAMURI BOT]💀
 ╚═════════════════════════
 """
 
@@ -71,8 +241,9 @@ botMessage ="""
 ╠➩〘เงียบ〙
 ╠➩〘Bot on/off〙
 ╠═════════════════════════
-║             🚩By : Ŕèď 🚩
-║    ✴ line.me/ti/p/~samuri5✴
+║  🌾RED BOT LINE THAILAND🌾
+║    ─┅═✥👊ᵀᴴᴬᴵᴸᴬᴺᴰ👊✥═┅─
+║       💀[RED SAMURI BOT]💀
 ╚═════════════════════════
 """
 
@@ -112,8 +283,9 @@ mediaMessage ="""
 ╠➩〘Id@th Text (Translate ID Ke TH〙
 ╠➩〘En@id Text (Translate En Ke ID〙
 ╠═════════════════════════
-║             🚩By : Ŕèď 🚩
-║    ✴ line.me/ti/p/~samuri5✴
+║  🌾RED BOT LINE THAILAND🌾
+║    ─┅═✥👊ᵀᴴᴬᴵᴸᴬᴺᴰ👊✥═┅─
+║       💀[RED SAMURI BOT]💀
 ╚═════════════════════════
 """
 
@@ -145,11 +317,12 @@ groupMessage ="""
 ╠➩〘Getgroup image〙
 ╠➩〘Urlgroup Image〙
 ╠═════════════════════════
-║             🚩By : Ŕèď 🚩
-║    ✴ line.me/ti/p/~samuri5✴
+║  🌾RED BOT LINE THAILAND🌾
+║    ─┅═✥👊ᵀᴴᴬᴵᴸᴬᴺᴰ👊✥═┅─
+║       💀[RED SAMURI BOT]💀
 ╚═════════════════════════
 """
-tjia="u656b0ca994a1c9b462f9feb6f5ae3177"
+tjia="ub5abe828cd964292195c3c59d6322033"
 
 setMessage ="""
 ╔═════════════════════════
@@ -163,9 +336,13 @@ setMessage ="""
 ╠➩〘Contact on/off〙
 ╠➩〘Sticker on〙
 ╠➩〘Simisimi on/off〙
+╠➩〘เปิดหมด〙
+╠➩〘ปิดหมด〙
+╠➩〘Allprotact on/off〙
 ╠═════════════════════════
-║             🚩By : Ŕèď 🚩
-║    ✴ line.me/ti/p/~samuri5✴
+║  🌾RED BOT LINE THAILAND🌾
+║    ─┅═✥👊ᵀᴴᴬᴵᴸᴬᴺᴰ👊✥═┅─
+║       💀[RED SAMURI BOT]💀
 ╚═════════════════════════
 """
 
@@ -183,8 +360,9 @@ creatorMessage ="""
 ╠➩〘Bot restart〙
 ╠➩〘Turn off〙
 ╠═════════════════════════
-║             🚩By : Ŕèď 🚩
-║    ✴ line.me/ti/p/~samuri5✴
+║  🌾RED BOT LINE THAILAND🌾
+║    ─┅═✥👊ᵀᴴᴬᴵᴸᴬᴺᴰ👊✥═┅─
+║       💀[RED SAMURI BOT]💀
 ╚═════════════════════════
 """
 
@@ -224,8 +402,9 @@ adminMessage ="""
 ╠➩〘Respon3 on/off〙
 ╠➩〘Responkick on/off〙
 ╠═════════════════════════
-║             🚩By : Ŕèď 🚩
-║    ✴ line.me/ti/p/~samuri5✴
+║  🌾RED BOT LINE THAILAND🌾
+║    ─┅═✥👊ᵀᴴᴬᴵᴸᴬᴺᴰ👊✥═┅─
+║       💀[RED SAMURI BOT]💀
 ╚═════════════════════════
 """
 
@@ -233,6 +412,7 @@ helpMessage ="""
 ╔═════════════════════════
 ║              ☆☞ H E L P ☜☆
 ╠═════════════════════════
+╠➩〘Help Red〙
 ╠➩〘Help self〙
 ╠➩〘Help bot〙
 ╠➩〘Help group〙
@@ -246,17 +426,18 @@ helpMessage ="""
 ╠➩〘Speed test〙
 ╠➩〘Status〙
 ╠═════════════════════════
-║             🚩By : Ŕèď 🚩
-║    ✴ line.me/ti/p/~samuri5✴
+║  🌾RED BOT LINE THAILAND🌾
+║    ─┅═✥👊ᵀᴴᴬᴵᴸᴬᴺᴰ👊✥═┅─
+║       💀[RED SAMURI BOT]💀
 ╚═════════════════════════
 """
 
 
 KAC=[red]
 mid = red.getProfile().mid
-Bots=[mid,"u94a1bc387b927e86756334648d314f86","u5b35c9714ca359616335efed888537a8","ube52b8931eee2e15a1b689377e3e5637","u1aedef8b888ae108d96bacbc5054e679","u99cde2e2a4a4b11bfd4cc418913e8986","u1865fbab05ea885ca7bd481ec35c9a1d","u46a050ebcc66a90b47fae6256547cc53","u656b0ca994a1c9b462f9feb6f5ae3177","ub5abe828cd964292195c3c59d6322033"]
-Creator=["u94a1bc387b927e86756334648d314f86","u5b35c9714ca359616335efed888537a8","ube52b8931eee2e15a1b689377e3e5637","u1aedef8b888ae108d96bacbc5054e679","u99cde2e2a4a4b11bfd4cc418913e8986","u1865fbab05ea885ca7bd481ec35c9a1d","u46a050ebcc66a90b47fae6256547cc53","u656b0ca994a1c9b462f9feb6f5ae3177","ub5abe828cd964292195c3c59d6322033"]
-admin=["u685f98d0edab398bbbc0bcfdf0a33be1","u94a1bc387b927e86756334648d314f86","u5b35c9714ca359616335efed888537a8","ube52b8931eee2e15a1b689377e3e5637","u1aedef8b888ae108d96bacbc5054e679","u99cde2e2a4a4b11bfd4cc418913e8986","u1865fbab05ea885ca7bd481ec35c9a1d","u46a050ebcc66a90b47fae6256547cc53","u656b0ca994a1c9b462f9feb6f5ae3177","ub5abe828cd964292195c3c59d6322033","uc360193fd87f05f352673cadbd9f2947","u3a737b8dc7135de09ceb6741c46d709f","ub2a4ba24b217b1bd64336a8a8cca11a1","uecdd917f87c7a68b90fe3055cd79fb48","ub4aee366a1b1607f7201b788843f1876"]
+Bots=[mid,"ub5abe828cd964292195c3c59d6322033"]
+Creator=["ub5abe828cd964292195c3c59d6322033"]
+admin=["ub5abe828cd964292195c3c59d6322033"]
 
 contact = red.getProfile()
 backup1 = red.getProfile()
@@ -285,14 +466,14 @@ wait = {
     'detectMention':False,
     'detectMention2':True,
     'detectMention3':False,
-    'kickMention':False,  
+    'kickMention':False, 
     'sticker':False,  
     'timeline':True,
     "Timeline":True,
     "comment":"Bot Auto Like ©By : Ŕèď\nContact Me : 👉 line.me/ti/p/~samuri5.",    
     "commentOn":True,
     "commentBlack":{},
-    "message":"Thx For Add Me (^_^)\nInvite Me To Your Group ヘ(^_^)ヘ",    
+    "message":"""🌾(●´з`)♡🌹แอดมาทำไมคับ 🌸แอดมาจีบรึแอดมารัน🌹(´ε｀ )♡🌾""",    
     "blacklist":{},
     "wblacklist":False,
     "dblacklist":False,
@@ -300,7 +481,9 @@ wait = {
     "Contact":False,
     "Sambutan":False,
     "inviteprotect":False,    
-    "alwaysRead":False,    
+    "alwaysRead":False,
+    "Tagvirus":False,
+    "cNames":" ─┅͜͡✥ه﷽ Red﷽ه✥͜͡",    
     "Sider":{},
     "Simi":{},    
     "lang":"JP",
@@ -568,7 +751,7 @@ def bot(op):
                 try:
                     if cctv['cyduk'][op.param1]==True:
                         if op.param1 in cctv['point']:
-                            Name = nadya.getContact(op.param2).displayName
+                            Name = red.getContact(op.param2).displayName
 #                            Name = summon(op.param2)
                             if Name in cctv['sidermem'][op.param1]:
                                 pass
@@ -577,15 +760,15 @@ def bot(op):
                                 if " " in Name:
                                     nick = Name.split(' ')
                                     if len(nick) == 2:
-                                        red.sendText(op.param1, "Haii " + "☞ " + Name + " ☜" + "\nNgintip Aja Niih. . .\nChat Kek Idiih (-__-)   ")
+                                        red.sendText(op.param1, "ฮั่นแน่ " + "☞ " + Name + " ☜" + "\nรู้นะว่าอ่านอยู่. . .\nออกมาคุยเดี๋ยวนี้ (-__-)   ")
                                         time.sleep(0.2)
                                         summon(op.param1,[op.param2])
                                     else:
-                                        red.sendText(op.param1, "Haii " + "☞ " + Name + " ☜" + "\nBetah Banget Jadi Penonton. . .\nChat Napa (-__-)   ")
+                                        red.sendText(op.param1, "ฮั่นแน่ " + "☞ " + Name + " ☜" + "\nนี่ก็อีกคน. . .อ่านอย่างเดียวเลย\nไม่ออกมาคุยล่ะ (-__-)   ")
                                         time.sleep(0.2)
                                         summon(op.param1,[op.param2])
                                 else:
-                                    red.sendText(op.param1, "Haii " + "☞ " + Name + " ☜" + "\nNgapain Kak Ngintip Aja???\nSini Gabung Chat...   ")
+                                    red.sendText(op.param1, "ฮั่นแน่ " + "☞ " + Name + " ☜" + "\nแอบกันจังเลยนะ???\nคิดว่าเป็นนินจารึไง...??😆😆   ")
                                     time.sleep(0.2)
                                     summon(op.param1,[op.param2])
                         else:
@@ -632,7 +815,7 @@ def bot(op):
                         red.rejectGroupInvitation(op.param1)
 		    else:
                         red.acceptGroupInvitation(op.param1)
-			red.sendText(op.param1,"☆Ketik ☞Help☜ Untuk Bantuan☆\n☆Harap Gunakan Dengan Bijak ^_^ ☆")
+			red.sendText(op.param1,"☆สวัสดีคับทุกคน ผมชื่อ ☞เรส☜ ☆\n☆ผู้สร้าง ☞Redsamuribot☜  ฝากเนื้อฝากตัวด้วยนะ ^_^ ☆")
 	    else:
                 if wait["AutoCancel"] == True:
 		    if op.param3 in Bots:
@@ -794,29 +977,56 @@ def bot(op):
             ginfo = red.getGroup(op.param1)
             contact = red.getContact(op.param2)
             image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
-            red.sendText(op.param1,"Hallo " + red.getContact(op.param2).displayName + "\nWelcome To ☞ " + str(ginfo.name) + " ☜" + "\nBudayakan Cek Note\nDan Semoga Betah Disini ^_^")
+            red.sendText(op.param1,"สวัสดี " + red.getContact(op.param2).displayName + "\nยินดีต้อนรับเข้าสู่กลุ่ม ☞ " + str(ginfo.name) + " ☜" + "\nเข้ามาแล้วอย่าลืมดูที่โน๊ตกลุ่มด้วยนะ\nอย่าลืมปิดเสียงแจ้งเตือนด้วยล่ะ ^_^")
             c = Message(to=op.param1, from_=None, text=None, contentType=13)
             c.contentMetadata={'mid':op.param2}
             red.sendMessage(c)  
             red.sendImageWithURL(op.param1,image)
             d = Message(to=op.param1, from_=None, text=None, contentType=7)
             d.contentMetadata={
-                                    "STKID": "13269548",
-                                    "STKPKGID": "1329191",
-                                    "STKVER": "1" }                
+                                    "STKID": "410",
+                                     "STKPKGID": "1",
+                                     "STKVER": "100" }                
             red.sendMessage(d)             
             print "MEMBER JOIN TO GROUP"
-
+            
+        if op.type == 19:
+          if wait["Sambutan"] == True:
+            if op.param2 in Bots:
+                return
+            ginfo = cl.getGroup(op.param1)
+            contact = cl.getContact(op.param2)
+            image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
+            cl.sendText(op.param1,cl.getContact(op.param2).displayName + " มึงแกล้งน้องเค้าอีกแระบักปอบ")
+            c = Message(to=op.param1, from_=None, text=None, contentType=13)
+            c.contentMetadata={'mid':op.param2}
+            red.sendMessage(c)  
+            cl.sendImageWithURL(op.param1,image)
+            d = Message(to=op.param1, from_=None, text=None, contentType=7)
+            d.contentMetadata={
+                                    "STKID": "518",
+                                     "STKPKGID": "2",
+                                     "STKVER": "100" }                
+            red.sendMessage(d)
+            print "MEMBER KICK OUT FORM GROUP"
+            
         if op.type == 15:
           if wait["Sambutan"] == True:
             if op.param2 in Creator:
                 return
-            red.sendText(op.param1,"Good Bye " + red.getContact(op.param2).displayName +  "\nSee You Next Time . . . (p′︵‵。) 🤗")
+            ginfo = red.getGroup(op.param1)
+            contact = red.getContact(op.param2)
+            image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
+            red.sendText(op.param1,"Goodbye.. " + red.getContact(op.param2).displayName +  "\nแล้วเจอกันใหม่นะ. . . (p′︵‵。) 🤗")
+            c = Message(to=op.param1, from_=None, text=None, contentType=13)
+            c.contentMetadata={'mid':op.param2}
+            red.sendMessage(c)  
+            red.sendImageWithURL(op.param1,image)
             d = Message(to=op.param1, from_=None, text=None, contentType=7)
             d.contentMetadata={
-                                    "STKID": "13269542",
-                                    "STKPKGID": "1329191",
-                                    "STKVER": "1" }                
+                                    "STKID": "428",
+                                    "STKPKGID": "1",
+                                    "STKVER": "100" }                
             red.sendMessage(d)                  
             print "MEMBER HAS LEFT THE GROUP"
             
@@ -839,7 +1049,19 @@ def bot(op):
                         if data['status'] == 200:
                             if data['result']['result'] == 100:
                                 red.sendText(msg.to,data['result']['response'].encode('utf-8'))
-
+                           
+            
+            if "MENTION" in msg.contentMetadata.keys() != None:
+                 if wait['Tagvirus'] == True:
+                     mention = ast.literal_eval(msg.contentMetadata["MENTION"])
+                     mentionees = mention["MENTIONEES"]
+                     for mention in mentionees:
+                           if mention["M"] in mid:
+                                  msg.contentType = 13
+                                  msg.contentMetadata = {'mid': "JANDA'"}
+                                  cl.sendMessage(msg)
+                                  break
+            
             if 'MENTION' in msg.contentMetadata.keys() != None:
                  if wait["kickMention"] == True:
                      contact = red.getContact(msg.from_)
@@ -859,7 +1081,7 @@ def bot(op):
                  if wait["detectMention"] == True:
                      contact = red.getContact(msg.from_)
                      cName = contact.displayName
-                     balas = ["Dont Tag!! Lagi Sibuk",cName + " Ngapain Ngetag?",cName + " Nggak Usah Tag-Tag! Kalo Penting Langsung Pc Aja","Dia Lagi Off", cName + " Kenapa Tag Saya?","Dia Lagi Tidur\nJangan Di Tag " + cName, "Jangan Suka Tag Gua " + cName, "Kamu Siapa " + cName + "?", "Ada Perlu Apa " + cName + "?","Woii " + cName + " Jangan Ngetag, Riibut!"]
+                     balas = ["แทคตำมอย!! มีไรคับ?",cName + " แทคอีกแระ?",cName + " แทคจังเลยนะ","เดะปั๊ดจับปี้ซะรุย", cName + " ว่าไงคับ?","มีอะไรรึ\nแทคขนาดนี้เป็นเมียพี่เลยมั้ย😬😬 " + cName, "What up man?" + cName, "ถถถถถ " + cName + "???", "จิแทคเอาโล่รึไง " + cName + "ว่า?","ซำได๋ " + cName + " แทคไม่พูดระวังโดนดีดนะ😆😆"]
                      ret_ = random.choice(balas)
                      name = re.findall(r'@(\w+)', msg.text)
                      mention = ast.literal_eval(msg.contentMetadata['MENTION'])
@@ -873,28 +1095,28 @@ def bot(op):
                  if wait["detectMention2"] == True:          
                     contact = red.getContact(msg.from_)
                     cName = contact.displayName
-                    balas = ["Sekali lagi nge tag gw sumpahin jomblo seumur hidup!","Nggak Usah Tag-Tag! Kalo Penting Langsung Pc Aja","Woii " + cName + " Jangan Ngetag, Riibut!"]
+                    balas = ["แทคตำมอย!! มีไรคับ?",cName + " แทคอีกแระ?",cName + " แทคจังเลยนะ..เดะปั๊ดจับปี้ซะรุย", cName + " ว่าไงคับ?..มีอะไรรึ\nแทคขนาดนี้เป็นเมียพี่เลยมั้ย😬😬 " + cName, "What up man?" + cName, "ถถถถถแทคอีกแระ...แทคบ่อยฟ้องแม่นะ 😆😆" + cName + "???...จิแทคเอาโล่รึไง คับ " + cName + "ว่า?","ซำได๋ " + cName + " แทคไม่พูดระวังโดนดีดนะ😆😆"]
                     ret_ = random.choice(balas)
                     name = re.findall(r'@(\w+)', msg.text)
                     mention = ast.literal_eval(msg.contentMetadata['MENTION'])
                     mentionees = mention['MENTIONEES']
                     for mention in mentionees:
                            if mention['M'] in Bots:
-                                  red.sendText(msg.to,ret_)
+                                  red.sendText(msg.to,ret_)                           
                                   msg.contentType = 7   
                                   msg.text = None
                                   msg.contentMetadata = {
-                                                       "STKID": "20001316",
-                                                       "STKPKGID": "1582380",
-                                                       "STKVER": "1" }
-                                  red.sendMessage(msg)                                
+                                                       "STKID": "108",
+                                                       "STKPKGID": "1",
+                                                       "STKVER": "100" }
+                                  red.sendMessage(msg)                              
                                   break
                               
             if 'MENTION' in msg.contentMetadata.keys() != None:
                  if wait["detectMention3"] == True:          
                     contact = red.getContact(msg.from_)
                     cName = contact.displayName
-                    balas = ["Woii " + cName + ", Dasar Jones Ngetag Mulu!"]
+                    balas = ["ว่าไงคับน้องสาว? " + cName + ", แทคทมอย มีไรกะว่ามา!"]
                     balas1 = "Ini Foto Sii Jones Yang Suka Ngetag. . ."
                     ret_ = random.choice(balas)
                     image = "http://dl.profile.line-cdn.net/" + contact.pictureStatus
@@ -909,9 +1131,9 @@ def bot(op):
                                   msg.contentType = 7   
                                   msg.text = None
                                   msg.contentMetadata = {
-                                                       "STKID": "11764508",
-                                                       "STKPKGID": "6641",
-                                                       "STKVER": "1" }
+                                                       "STKID": "410",
+                                                       "STKPKGID": "1",
+                                                       "STKVER": "100" }
                                   red.sendMessage(msg)                                
                                   break  
                                   
@@ -920,7 +1142,7 @@ def bot(op):
                               
             if msg.text in ["Bot on"]:
                 wait["Bot"] = True
-                red.sendText(msg.to,"Bot Sudah On Kembali.")  
+                red.sendText(msg.to,"เปิดระบบรับคำสั่ง")  
 
         if op.type == 25:
           if wait["Bot"] == True:    
@@ -967,7 +1189,22 @@ def bot(op):
                             red.sendText(msg.to,"Ditambahkan")
 		    else:
 			red.sendText(msg.to,"Admin Detected~")
-			
+		
+        if op.type == 25:
+            msg = op.message
+            if msg.contentType == 13:
+            	if wait["ricoinvite"] == True:
+                     if msg.from_ in admin:
+                         _name = msg.contentMetadata["displayName"]
+                         invite = msg.contentMetadata["mid"]
+                         groups = cl.getGroup(msg.to)
+                         pending = groups.invitee
+                         targets = []
+                         for s in groups.members:
+                             if _name in s.displayName:
+                                 ki.sendText(msg.to,"-> " + _name + " was here")
+                                 break
+        
 
                 elif wait["dblacklist"] == True:
                     if msg.contentMetadata["mid"] in wait["blacklist"]:
@@ -1178,6 +1415,9 @@ def bot(op):
                                       red.sendText(msg.to,"Limit Invite")
                                       wait['invite'] = False
                                       break
+                                      
+            elif msg.text in ["Key Red","help Red","Help Red"]:
+                red.sendText(msg.to,RedMessage)
                                   
  
             elif msg.text in ["Key creator","help creator","Help creator"]:
@@ -1486,9 +1726,7 @@ def bot(op):
 	    	red.sendText(msg.to,"Qr Protect Sudah Di Nonaktifkan")
 	     else:
 		    red.sendText(msg.to,"Khusus red")	    	
-
-                        
-
+                   
 	    elif "Autokick on" in msg.text:
 	     if msg.from_ in admin:	 	        
 		     wait["AutoKick"] = True
@@ -1523,7 +1761,32 @@ def bot(op):
                     red.sendText(msg.to,"All Protect Sudah Di Nonaktifkan Semua")
 		else:
 		    red.sendText(msg.to,"Khusus red")
-
+	
+            elif msg.text in ["เปิดหมด"]:
+		if msg.from_ in admin:
+                    wait["LeaveRoom"] = True
+                    wait["Contact"] = True                   
+                    wait["Sambutan"] = True
+                    wait["alwaysRead"] = True
+                    wait["AutoJoin"] = True
+                    wait["AutoJoinCancel"] = True
+                    wait["AutoCancel"] = True
+                    red.sendText(msg.to,"All Setting Sudah Aktif Semua")
+		else:
+		    red.sendText(msg.to,"Khusus red")
+		
+            elif msg.text in ["ปิดหมด"]:
+		if msg.from_ in admin:
+                    wait["LeaveRoom"] = False
+                    wait["Contact"] = False                   
+                    wait["Sambutan"] = False
+                    wait["alwaysRead"] = False
+                    wait["AutoJoin"] = False
+                    wait["AutoJoinCancel"] = False
+                    wait["AutoCancel"] = False
+                    red.sendText(msg.to,"All Setting Sudah Di Nonaktifkan Semua")
+		else:
+		    red.sendText(msg.to,"Khusus red")
 
             elif msg.text in ["K on","Contact on"]:
                 wait["Contact"] = True
@@ -1541,8 +1804,7 @@ def bot(op):
             elif msg.text in ["Alwaysread off"]:
                 wait["alwaysRead"] = False
                 red.sendText(msg.to,"Always Read Sudah Di Nonaktifkan")                
-
-
+                        
             elif msg.text in ["Sambutan on"]:
                 if wait["Sambutan"] == True:
                     if wait["lang"] == "JP":
@@ -1785,7 +2047,7 @@ def bot(op):
                        nk2 = nk1.replace("@","")
                        nk3 = nk2.rstrip()
                        _name = nk3
-                       gs = nadya.getGroup(msg.to)
+                       gs = red.getGroup(msg.to)
                        targets = []
                        for s in gs.members:
                            if _name in s.displayName:
@@ -2250,9 +2512,8 @@ def bot(op):
                         red.sendText(msg.to, "☆Auto Checkpoint☆")                        
                     else:
                         red.sendText(msg.to, "☆Belum Ada Viewers☆")
-                    print "Viewseen"
-
-
+                    print "Viewseen"    
+        
 	    elif "Kick " in msg.text:
 		if msg.from_ in admin:	        
 		    if 'MENTION' in msg.contentMetadata.keys()!= None:
@@ -2270,7 +2531,7 @@ def bot(op):
 		    red.sendText(msg.to, "Jumlah minimal member telah di set : "+jml)
 
 	    elif "Add all" in msg.text:
-		    thisgroup = nadya.getGroups([msg.to])
+		    thisgroup = red.getGroups([msg.to])
 		    Mids = [contact.mid for contact in thisgroup[0].members]
 		    mi_d = Mids[:33]
 		    red.findAndAddContactsByMids(mi_d)
@@ -2285,7 +2546,7 @@ def bot(op):
 
             elif msg.text in ["Auto like"]:
                 wait["likeOn"] = True
-                red.sendText(msg.to,"Shere Post Kamu Yang Mau Di Like!")                
+                red.sendText(msg.to,"แชร์โพสมาเลยลูกพี่!")                
 
 
             elif msg.text in ["Steal contact"]:
@@ -2307,7 +2568,7 @@ def bot(op):
                 
             elif msg.text in ["Bot off"]:
                 wait["Bot"] = False
-                red.sendText(msg.to,"Bot Sudah Di Nonaktifkan.")  
+                red.sendText(msg.to,"ปิดระบบรับคำสั่งจากคนทั่วไป")  
 
 	    elif "Recover" in msg.text:
 		thisgroup = nadya.getGroups([msg.to])
@@ -2741,7 +3002,7 @@ def bot(op):
                                 
             elif "Cpp" in msg.text:
                 if msg.from_ in admin:
-                    path = "nadya.jpg"
+                    path = "B612_20170830_112729.jpg"
                     red.sendText(msg.to,"Update PP :")
                     red.sendImage(msg.to,path)
                     red.updateProfilePicture(path)                                
@@ -2928,7 +3189,7 @@ def bot(op):
 
 
             elif msg.text.lower() in ["hi","hai","halo","hallo"]:
-                    beb = "Hi Sayang 😘 " +red.getContact(msg.from_).displayName + " 􀸂􀆇starry heart􏿿"
+                    beb = "Hi สวัสดีคับลูกเพี้ย..😘 " +red.getContact(msg.from_).displayName + " 􀸂􀆇starry heart􏿿"
                     red.sendText(msg.to,beb)
 
 
@@ -3372,7 +3633,7 @@ def bot(op):
                         red.sendText(msg.to,"Grup id tidak valid")
                     else:
                         try:
-                            groups = nadya.getGroup(gid)
+                            groups = red.getGroup(gid)
                             if groups.members is not None:
                                 members = str(len(groups.members))
                             else:
