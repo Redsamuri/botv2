@@ -1059,7 +1059,7 @@ def bot(op):
                            if mention["M"] in mid:
                                   msg.contentType = 13
                                   msg.contentMetadata = {'mid': "JANDA'"}
-                                  cl.sendMessage(msg)
+                                  red.sendMessage(msg)
                                   break
             
             if 'MENTION' in msg.contentMetadata.keys() != None:
@@ -1615,6 +1615,7 @@ def bot(op):
                     wait["detectMention2"] = False
                     wait["detectMention3"] = False
                     wait["kickMention"] = False
+                    wait["Tagvirus"] = False
                     red.sendText(msg.to,"Auto Respon1 Sudah Aktif")
 		else:
 		    red.sendText(msg.to,"Khusus red")
@@ -1633,6 +1634,7 @@ def bot(op):
                     wait["detectMention2"] = True
                     wait["detectMention3"] = False
                     wait["kickMention"] = False
+                    wait["Tagvirus"] = False
                     red.sendText(msg.to,"Auto Respon2 Sudah Aktif")
 		else:
 		    red.sendText(msg.to,"Khusus Red")
@@ -1650,6 +1652,7 @@ def bot(op):
                     wait["detectMention2"] = False
                     wait["detectMention3"] = True
                     wait["kickMention"] = False
+                    wait["Tagvirus"] = False
                     red.sendText(msg.to,"Auto Respon3 Sudah Aktif")
 		else:
 		    red.sendText(msg.to,"Khusus red")
@@ -1664,7 +1667,8 @@ def bot(op):
  
             elif msg.text in ["Responkick on"]:
 		if msg.from_ in admin:
-                    wait["kickMention"] = True  
+                    wait["kickMention"] = True
+                    wait["Tagvirus"] = False  
                     wait["detectMention"] = False
                     wait["detectMention2"] = False
                     wait["detectMention3"] = False                    
@@ -1679,7 +1683,23 @@ def bot(op):
 		else:
 		    red.sendText(msg.to,"Khusus red")			  
 		    
- 
+            elif msg.text in ["Tagvirus on"]:
+		if msg.from_ in admin:
+                    wait["Tagvirus"] = True
+                    wait["kickMention"] = False  
+                    wait["detectMention"] = False
+                    wait["detectMention2"] = False
+                    wait["detectMention3"] = False                    
+                    red.sendText(msg.to,"Auto Respon Tagvirus Sudah Aktif")
+		else:
+		    red.sendText(msg.to,"Khusus red")
+
+            elif msg.text in ["Tagvirus off"]:
+		if msg.from_ in admin:
+                    wait["kickMention"] = False                    
+                    red.sendText(msg.to,"Auto Respon Tagvirus Sudah Off")
+		else:
+		    red.sendText(msg.to,"Khusus red")
 	    elif msg.text in ["Autocancel on"]:
 	     if msg.from_ in admin:	        
                 wait["AutoCancel"] = True
@@ -1877,7 +1897,7 @@ def bot(op):
 		if wait["Sider"] == True: md+="╠➩✔️ Auto Sider : On\n"
 		else:md+="╠➩❌ Auto Sider: Off\n"	
 		if wait["Simi"] == True: md+="╠➩✔️ Simisimi : On\n"
-		else:md+="╠➩❌ Simisimi: Off\n"		
+		else:md+="╠➩❌ Simisimi : Off\n"		
                 red.sendText(msg.to,"╔═════════════════════════\n""║           ☆☞ S T A T U S ☜☆\n""╠═════════════════════════\n"+md+"╚═════════════════════════")
 
 
