@@ -6,7 +6,6 @@ from LINETCR.lib.curve.ttypes import *
 from datetime import datetime
 from bs4 import BeautifulSoup
 from urllib import urlopen
-from Helper.main import qr
 import requests
 from io import StringIO
 from threading import Thread
@@ -19,7 +18,7 @@ import time,random,sys,json,codecs,threading,glob,urllib,urllib2,urllib3,re,ast,
 #red.loginResult()
 
 red = LINETCR.LINE()
-red.login(token=qr().get())
+red.login(token="YOU TOKEN")
 red.loginResult()
 
 print "\n=====[redbot Login]====="
